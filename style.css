@@ -1,0 +1,543 @@
+/* RESET GENERAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+/* 1. TOP BAR */
+.top-bar {
+    background-color: #7A5C33; /* Màu nâu đất thương hiệu */
+    color: #E2C799;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 50px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.top-bar-left span {
+    margin-right: 20px;
+}
+
+.top-bar-left i, .top-bar-right i {
+    margin-right: 5px;
+}
+
+.top-bar-right a {
+    color: #E2C799;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.lang-switch {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* 2. MAIN HEADER */
+.main-header {
+    background-color: rgba(122, 92, 51, 0.85); /* Màu nâu trong suốt đè lên ảnh */
+    position: absolute;
+    top: 35px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+}
+
+.logo h1 {
+    color: #E2C799;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 28px;
+}
+
+.logo p {
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #E2C799;
+}
+
+.btn-book {
+    background-color: #D4A359;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.btn-book:hover {
+    background-color: #bfa054;
+}
+
+/* 3. HERO SECTION */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================================
+   4. CẤU HÌNH GIAO DIỆN CHATBOT MUINE BAY ASSISTANT
+   ======================================================== */
+.chatbot-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999999;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Nút tròn nổi ở góc màn hình */
+.chatbot-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #7A5C33;
+    color: #F2C799;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+    background-color: #634a27;
+}
+
+/* Khung cửa sổ chat */
+.chat-window {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 360px;
+    height: 500px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Class kích hoạt hiển thị chatbox */
+.chat-window.active {
+    transform: scale(1);
+}
+
+/* Tiêu đề chatbox */
+.chat-header {
+    background-color: #7A5C33;
+    color: #ffffff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.chat-header button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Vùng chứa tin nhắn */
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Bong bóng chat chung */
+.msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+/* Tin nhắn từ Trợ lý ảo */
+.bot-msg {
+    background-color: #eaeaea;
+    color: #333333;
+    align-self: flex-start;
+    border-top-left-radius: 2px;
+}
+
+/* Tin nhắn của Khách hàng */
+.user-msg {
+    background-color: #7A5C33;
+    color: #ffffff;
+    align-self: flex-end;
+    border-top-right-radius: 2px;
+}
+
+/* Thanh nhập liệu ở chân chatbox */
+.chat-footer {
+    padding: 12px 15px;
+    background-color: #ffffff;
+    border-top: 1px solid #eeeeee;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.chat-footer input {
+    flex: 1;
+    border: 1px solid #cccccc;
+    padding: 10px 14px;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    transition: border 0.2s;
+}
+
+.chat-footer input:focus {
+    border-color: #7A5C33;
+}
+
+.chat-footer button {
+    background-color: #7A5C33;
+    color: #ffffff;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.chat-footer button:hover {
+    background-color: #634a27;
+}
+
+/* ==========================================================================
+   5. STYLE CHO MẢNG DANH SÁCH 6 PHÒNG (ACCOMMODATION GRID)
+   ========================================================================== */
+.rooms-section {
+    padding: 80px 4% 60px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Times New Roman', Times, serif;
+    color: #7A5C33;
+    font-size: 32px;
+    margin-bottom: 45px;
+    position: relative;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 1px;
+    background-color: #D4A359;
+    margin: 12px auto 0;
+}
+
+.rooms-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.room-card {
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 0px; 
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.room-img-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.room-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.room-card:hover img {
+    transform: scale(1.04);
+}
+
+.room-info {
+    padding: 25px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.room-info h3 {
+    color: #D4A359; 
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+.room-desc {
+    color: #555;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    height: 70px; 
+    overflow: hidden;
+}
+
+.room-price {
+    font-size: 20px;
+    color: #333333;
+    font-weight: 500;
+    border-top: 1px solid #f2f2f2;
+    padding-top: 15px;
+}
+
+.room-price span {
+    font-size: 12px;
+    color: #888;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.rooms-section-intro {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================
+   6. CSS CHO CÁC KHỐI CHỨC NĂNG MỚI (PROVINCE INFO & EXPLORE GALLERY)
+   ========================================================================== */
+.content-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 34px;
+    color: #444;
+    font-weight: normal;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.info-province-section {
+    padding: 60px 15% 40px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.content-subtitle {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.features-columns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.features-columns .col {
+    flex: 1;
+    text-align: left;
+}
+
+.feature-item {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-dot {
+    color: #D4A359;
+    font-size: 16px;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.col-divider {
+    width: 1px;
+    height: 120px;
+    background-color: #ccc;
+}
+
+.explore-section {
+    padding: 40px 10%;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.explore-grid {
+    display: flex;
+    gap: 15px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.grid-left-group {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.grid-right-tall {
+    flex: 1;
+}
+
+.grid-right-tall .img-box {
+    height: 100%;
+}
+
+.img-box {
+    position: relative;
+    overflow: hidden;
+    height: 220px; 
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.img-box:hover img {
+    transform: scale(1.03);
+}
+
+.img-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #E6E4E2;
+    color: #666;
+    font-size: 12px;
+    text-align: left;
+    padding: 8px 15px;
+    font-family: Arial, sans-serif;
+}
+
+/* ==========================================================================
+   7. ĐẢM BẢO RESPONSIVE CHẠY MƯỢT TRÊN ĐIỆN THOẠI
+   ========================================================================== */
+@media (max-width: 768px) {
+    .features-columns, .explore-grid {
+        flex-direction: column;
+    }
+    .col-divider {
+        display: none;
+    }
+    .grid-left-group {
+        grid-template-columns: 1fr;
+    }
+    .grid-right-tall .img-box {
+        height: 300px;
+    }
+}
